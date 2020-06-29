@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .Lb-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 280px;
+        }
+        .Lb-box #ul>li {
+            position: absolute;
+            width: 800px;
+            height: 100%;
+            display: none;
+        }
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 6;
+            width: 50px;
+            overflow: hidden;
+            background: rgba(0,0,0,.5);
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .next>img {
+            margin-left: -50px;
+        }
+        .href {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 5px;
+            width: 150px;
+            height: 20px;
+        }
+        .href li{
+            float: left;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            line-height: 15px;
+            border: 3px solid #3c3c3c;
+            border-radius: 50%;
+        }
+        .href-color {
+            background:rgba(255,255,255,.5);
+        }
+    </style>
+</head>
+<body>
+<div class="Lb-box">
+    <ul id="ul">
+        <li style='display: block;'>
+            <img src="images/01.jpg" >
+        </li>
+        <li>
+            <img src="images/02.jpg" >
+        </li>
+        <li>
+            <img src="images/03.jpg" >
+        </li>
+        <li>
+            <img src="images/04.jpg" >
+        </li>
+        <li>
+            <img src="images/05.jpg" >
+        </li>
+    </ul>
+    <a  href="javascript:;" class="prev">
+        <img src="images/spirte.png" >
+    </a>
+    <a href="javascript:;" class="next">
+        <img src="images/spirte.png" >
+    </a>
+    <ul class="href">
+        <li class="href-color"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        var num=0;
+        $('.next').click(function () {
+            num++;
+            if(num== $('#ul li').length){
+                num=0;
+            }
+            $('#ul li').eq(num).fadeIn().siblings().fadeOut();
+            $('.href li').eq(num).addClass('href-color').siblings().removeClass('href-color');
+        });
+        $('.prev').click(function () {
+            num--;
+            if(num==-1){
+                num=$('#ul li').length-1;
+            }
+            $('#ul li').eq(num).fadeIn().siblings().fadeOut();
+            $('.href li').eq(num).addClass('href-color').siblings().removeClass('href-color');
+        });
+        $('.href li').click(function () {
+            var idx = $(this).index();
+            $('#ul li').eq(idx).fadeIn().siblings().fadeOut();
+            $('.href li').eq(idx).addClass('href-color').siblings().removeClass('href-color');
+        });
+    });
+</script>
+</html>

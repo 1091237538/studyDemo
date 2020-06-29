@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            margin: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('ul').on('click','li',function () {
+           console.log($(this).index());
+       });
+    });
+</script>
+</html>

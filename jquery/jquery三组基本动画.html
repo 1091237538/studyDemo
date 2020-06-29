@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: pink;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>显示隐藏切换</button>
+    <button>淡入</button>
+    <button>淡出</button>
+    <button>淡入淡出切换</button>
+    <div></div>
+</body>
+    <script src="jquery-1.11.3/jquery.js"></script>
+    <script>
+        $(function () {
+            $('button').eq(0).click(function () {
+                $('div').show(300);
+            });
+            $('button').eq(1).click(function () {
+                $('div').hide(300);
+            });
+            $('button').eq(2).click(function () {
+                $('div').slideToggle(300);
+            });
+            $('button').eq(3).click(function () {
+                $('div').fadeIn(300);
+            });
+            $('button').eq(4).click(function () {
+                $('div').fadeOut(300);
+            });
+            $('button').eq(5).click(function () {
+                $('div').fadeToggle(300);
+            });
+        });
+    </script>
+</html>

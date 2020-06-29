@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+            <script>
+                function Father(name,sex,age){
+                     this.name = name;
+                     this.sex = sex;
+                     this.age = age;
+                }
+                function Son(name,sex,age,tel) {
+                     Father.call(this,name,sex,age);
+                     this.tel = tel;
+                }
+                var son =new Son('yang','male','19','17360586310');
+                var father = new Father('laoyang','male','45');
+            </script>
+</html>

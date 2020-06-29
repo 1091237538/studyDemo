@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin:0;
+            padding: 0;
+        }
+        .wrap-box {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+        }
+        .img-box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 200px;
+            height: 200px;
+            transform: translate(-50%,-50%);
+        }
+        .zz {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(0,0,0,.5);
+            cursor: move;
+            display: none;
+        }
+        .scale-box {
+            position: absolute;
+            left: 410px;
+            top: 0;
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            display: none;
+            overflow: hidden;
+        }
+        .scale-img {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <img class="img-box" src="https://img11.360buyimg.com/n1/jfs/t1/35876/17/14931/72552/5d2c3666Ec82eaff3/777ac002f072a59a.jpg"></img>
+        <div class="zz"></div>
+        <div class="scale-box">
+            <img class="scale-img" src="https://img11.360buyimg.com//n0/jfs/t1/35876/17/14931/72552/5d2c3666Ec82eaff3/777ac002f072a59a.jpg"></img>
+        </div>
+    </div>
+</body>
+     <script>
+         var wrapBox = document.querySelector('.wrap-box');
+         var zz = document.querySelector('.zz');
+         var scaleBox = document.querySelector('.scale-box');
+         var scaleImg = document.querySelector('.scale-img');
+         wrapBox.addEventListener('mousemove',function (e) {
+            zz.style.display='block';
+            scaleBox.style.display='block';
+            var x = e.pageX - wrapBox.offsetLeft;
+            var y = e.pageY -wrapBox.offsetTop ;
+            var maskX =  x - zz.offsetWidth/2;
+            var maskY =  y - zz.offsetHeight/2;
+            var maskXX = wrapBox.offsetWidth  - zz.offsetWidth;
+            var maskYY = wrapBox.offsetHeight - zz.offsetHeight;
+             if(maskX<=0){
+                 maskX=0;
+             }else if(maskX>maskXX){
+                 maskX=maskXX;
+             }
+             if(maskY<=0){
+                 maskY=0;
+             }
+             else if(maskY>maskYY){
+                 maskY=maskYY;
+             }
+             zz.style.left = maskX +'px' ;
+             zz.style.top  = maskY +'px' ;
+             //大图片的移动距离=遮罩层的移动距离*大图片最大移动距离/遮罩层最大移动距离
+             var bigMax =  scaleImg.offsetWidth-scaleBox.offsetWidth;//图片最大X移动距离
+             var bigMay =  scaleImg.offsetHeight-scaleBox.offsetHeight;//图片最大Y移动距离
+             var bigX =  maskX  * bigMax / maskXX;
+             var bigY =  maskY  * bigMay / maskYY;
+             scaleImg.style.left = - bigX +'px';
+             scaleImg.style.top  = - bigY +'px';
+         });
+         wrapBox.addEventListener('mouseout',function () {
+             zz.style.display='none';
+             scaleBox.style.display='none';
+         });
+     </script>
+</html>

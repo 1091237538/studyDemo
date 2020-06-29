@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin:0;
+            padding: 0;
+        }
+      .wrap-box {
+          width: 500px ;
+          height: 40px ;
+          border-bottom: 1px solid black;
+      }
+      ul {
+          height: 40px;
+      }
+        ul li {
+            position: relative;
+            list-style: none;
+            float: left;
+            margin: 0 20px;
+            line-height: 40px;
+            cursor: pointer;
+            /*border: 1px solid black;*/
+        }
+        ul :hover span {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid black;
+
+        }
+        .ui {
+            display: block;
+            width: 100px ;
+            height: 100px ;
+            outline: none;
+            border: 0;
+            border-radius:15px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <ul>
+            <li>HTML<span></span></li>
+            <li>CSS<span></span></li>
+            <li>JAVASCRIPT<span></span></li>
+        </ul>
+    </div>
+
+</body>
+</html>

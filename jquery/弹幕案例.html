@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+        #content-box {
+            position: relative;
+            margin: 0 auto;
+            width: 1000px;
+            height: 765px;
+            border: 3px solid rgba(0,0,0,.5);
+            overflow: hidden;
+        }
+        #content-box span {
+            position: absolute;
+        }
+        #bottom {
+            width: 100%;
+            height: 200px;
+            background: pink;
+            text-align: center;
+            line-height: 200px;
+        }
+        #text {
+            width: 200px;
+            height: 32px;
+            font-size: 20px;
+        }
+        #submit {
+            width: 50px;
+            height: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content-box"></div>
+    <div id="bottom">
+        <input type="text" id="text">
+        <input type="submit" value="发送" id="submit">
+    </div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+
+    $(function () {
+        var colorArr = ['red','skyblue','pink','deeppink','hotpink','yellowgreen'];
+        $('#submit').click(function () {
+            var randomY = parseInt(Math.random()*550);//随机高度
+            var randomColor = parseInt(Math.random()*colorArr.length);//随机颜色
+            var contentText = $('#text').val();
+            var innerX = document.getElementById('content-box').clientWidth;//获取盒子的宽度
+           $('<span></span>')
+               .text($('#text').val())  //获取输入文本的内容赋值给创建的标签
+               .css({left:innerX,top:randomY,color:colorArr[randomColor],fontSize:24})
+               .animate({left:0},10000,'linear',function () {
+                   $(this).remove();
+               })
+               .appendTo('#content-box');
+                $('#text').val('');
+        });
+        $('#text').keyup(function (e) {
+            if(e.keyCode == 13){
+                $('#submit').trigger('click');
+            }
+        });
+    });
+</script>
+</html>

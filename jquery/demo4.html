@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        div {
+            position: absolute;
+             height: 35px;
+        }
+        #none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="ul-style">
+            <li>
+                <a href="javascript:;">一级菜单</a>
+                <ul id="none">
+                    <li>二级菜单1</li>
+                    <li>二级菜单2</li>
+                    <li>二级菜单3</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        $('.ul-style>li').on('mouseenter',function () {
+            $('#none').show();
+        });
+        $('.ul-style>li').on('mouseleave',function () {
+            $('#none').hide();
+        })
+    });
+</script>
+</html>

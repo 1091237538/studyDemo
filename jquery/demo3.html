@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        div {
+            margin: 0 auto;
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        li {
+            float: left;
+            width: 200px;
+            height: 150px;
+            text-align: center;
+            line-height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</body>
+    <script src="jquery-1.11.3/jquery.js"></script>
+    <script>
+        $(function () {
+           $('div').find('li').mouseenter(function () {
+               $(this).css('backgroundColor','pink').siblings().css('backgroundColor','#fff');
+           }) ;
+            $('div').mouseleave(function () {
+                $(this).find('li').css({'backgroundColor':'skyblue','color':'red'});
+            }) ;
+        });
+    </script>
+</html>

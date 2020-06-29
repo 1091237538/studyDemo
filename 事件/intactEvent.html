@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: pink;
+            border: 1px solid black;
+        }
+        section {
+            margin: 50px auto;
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section></section>
+    </div>
+</body>
+    <script>
+        var div = document.querySelector('div');
+        var section = document.querySelector('section');
+        div.addEventListener('click',function () {
+            alert('div');
+            alert(this);
+        })
+        section.addEventListener('click',function(event){
+            alert('section');
+            event.stopPropagation();
+            alert(this);
+        })
+    </script>
+</html>

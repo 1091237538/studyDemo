@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .wrap-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 375px;
+            overflow: hidden;
+        }
+        .wrap-box ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 600%;
+        }
+        .wrap-box ul li {
+            float: left;
+        }
+        .wrap-box img {
+            width: 600px ;
+            height: 375px;
+        }
+        ol li {
+            width: 10px;
+            float: left;
+            height: 10px;
+            border: 3px solid #3c3c3c;
+            border-radius: 50%;
+            z-index: 6;
+            margin-right: 5px;
+        }
+        ol {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+
+        }
+        .current {
+            background-color: #fff;
+        }
+        .left,
+        .right {
+            position: absolute;
+            width: 30px;
+            height: 70px;
+            text-align: center;
+            line-height: 70px;
+            top: 50%;
+            color: #fff;
+            font-size: 24px;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,.5);
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <ul>
+            <li>
+                <img src="../images/sao1.jpg" >
+            </li>
+            <li>
+                <img src="../images/sao2.jpg" >
+            </li>
+            <li>
+                <img src="../images/sao4.jpg" >
+            </li>
+        </ul>
+        <ol></ol>
+        <a href="javascript:;" class="left"><</a>
+        <a href="javascript:;" class="right">></a>
+    </div>
+</body>
+    <script>
+        function animate(elem,target){
+            clearInterval(elem.timer);
+            elem.timer = setInterval(function () {
+                var stop = (target-elem.offsetLeft)/10;
+                stop = stop>0?Math.ceil(stop):Math.floor(stop);
+                if(elem.offsetLeft==target){
+                    clearInterval(elem.timer);
+                }
+                elem.style.left = elem.offsetLeft + stop + 'px';
+            },15);
+        }
+        var lis = document.querySelector('ul').querySelectorAll('li');
+        var ol = document.querySelector('ol');
+        var wrapBox = document.querySelector('.wrap-box');
+        var ul  = document.getElementsByTagName('ul')[0];
+        var next = document.querySelector('.right');
+        var up = document.querySelector('.left');
+        for (var i=0;i<lis.length;i++) {
+            var li = document.createElement('li');
+            li.setAttribute('index', i);
+            ol.appendChild(li);
+            li.addEventListener('click', function () {
+                for (var i = 0; i < ol.children.length; i++) {
+                    ol.children[i].className = '';
+                }
+                this.className = 'current';
+                //ul移动的距离 小圆圈的索引号*图片的宽度 负值
+                var index = this.getAttribute('index');
+                num=index;
+                circle =index;
+                var ImgWidth = wrapBox.offsetWidth;
+                animate(ul, -index * ImgWidth);
+            });
+
+            ol.children[0].className = 'current';
+        }
+        // 克隆第一张图片
+        var first = ul.children[0].cloneNode(true);
+        ul.appendChild(first);
+        var num=0;
+        var circle = 0;
+        next.addEventListener('click',function () {
+            circle++;
+            if(circle==ol.children.length){
+                circle=0;
+            }
+            if(num==ul.children.length-1){
+                ul.style.left=0;
+                num=0;
+            }
+            num++;
+            animate(ul,-num*wrapBox.offsetWidth);
+            for(var i =0;i<lis.length;i++){
+                ol.children[i].className='';
+            }
+            ol.children[circle].className='current';
+
+        });
+        // tp.addEventListener('click',function () {
+        //     circle++;
+        //     if(circle==ol.children.length){
+        //         circle=0;
+        //     }
+        //     if(num==ul.children.length-1){
+        //         ul.style.left=0;
+        //         num=0;
+        //     }
+        //     num--;
+        //     animate(ul,-num*wrapBox.offsetWidth);
+        //     for(var i =0;i<lis.length;i++){
+        //         ol.children[i].className='';
+        //     }
+        //     ol.children[circle].className='current';
+        //
+        // });
+    </script>
+
+</html>

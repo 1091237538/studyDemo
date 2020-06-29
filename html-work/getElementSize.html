@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>float</title>
+    <style>
+        div {
+            position:  absolute;
+            top: 100px ;
+            left: 100px ;
+            border: 1px solid black;
+            width: 100px ;
+            height: 100px ;
+        }
+    </style>
+</head>
+<body>
+        <div></div>
+</body>
+<!--    封装一个方法查看元素的尺寸-->
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        Element.prototype.getElementSize = function () {
+                return {
+                    Width:this.offsetWidth,
+                    Height:this.offsetHeight
+                }
+        }
+    </script>
+</html>

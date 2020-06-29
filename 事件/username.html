@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#" method="post">
+        userName: <input type="text" name="userName">&nbsp;&nbsp;<input type="checkbox">记住用户名
+    </form>
+</body>
+    <script>
+        var us = document.querySelectorAll('input')[0];
+        var gs = document.querySelectorAll('input')[1];
+        if(localStorage.getItem('userName')){
+                us.value=localStorage.getItem('userName');
+                gs.checked='true';
+        }
+        gs.addEventListener('change',function () {
+               if(this.checked){
+                   localStorage.setItem('userName',us.value);
+               }
+               else {
+                   localStorage.removeItem('userName');
+               }
+        });
+    </script>
+</html>

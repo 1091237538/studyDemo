@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+</body>
+    <script>
+        var myCanvas = document.querySelector('canvas');
+        var ctx = myCanvas.getContext('2d');
+        var ctxWidth = ctx.canvas.width;
+        var ctxHeight = ctx.canvas.height;
+        ctx.beginPath();
+        var x0 = ctxWidth/2;
+        var y0 = ctxHeight/2;
+        ctx.moveTo(0,ctxHeight/2-0.5);
+        ctx.lineTo(ctxWidth,ctxHeight/2-0.5);
+        ctx.moveTo(ctxWidth/2-0.5,0);
+        ctx.lineTo(ctxWidth/2-0.5,ctxHeight);
+        ctx.strokeStyle='#ccc';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.font='30px 微软雅黑';
+        var strokColor = ctx.createLinearGradient(x0,y0,400,y0);
+        strokColor.addColorStop(0,'pink');
+        strokColor.addColorStop(1,'skyblue');
+        ctx.fillStyle=strokColor;
+        ctx.textAlign='center';
+        ctx.textBaseline='middle';
+        var str ='javascript';
+        ctx.fillText(str,x0,y0);
+        var textWidth = ctx.measureText(str).width;
+        ctx.beginPath();
+        ctx.strokeStyle='#000';
+        ctx.moveTo(x0-textWidth/2,y0+15);
+        ctx.lineTo(x0+textWidth/2,y0+15);
+        ctx.stroke();
+    </script>
+</html>

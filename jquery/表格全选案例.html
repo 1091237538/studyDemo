@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            clear: both;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td {
+            width: 20px;
+        }
+        .qx-box {
+            margin: 0 auto;
+            width: 300px;
+            height: 50px;
+
+        }
+        .qx-box span {
+            float: left;
+            display: block;
+            height: 50px;
+            border: 1px solid black;
+        }
+        .qx-box span:nth-child(1){
+            line-height: 50px;
+            text-align: center;
+            width: 51px;
+        }
+        .qx-box span:nth-child(2){
+            width: 150px;
+        }
+        .qx-box span:nth-child(3){
+            width: 93px;
+        }
+    </style>
+</head>
+<body>
+<form action="#">
+    <div class="qx-box">
+            <span >
+                <input id="cx" type="checkbox">
+            </span>
+        <span></span>
+        <span></span>
+    </div>
+    <table  border="1" cellspacing="0" width="300px" height="200px">
+        <tr>
+            <td><input type="checkbox" name="check"></td>
+            <td>iphone8</td>
+            <td>8000</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="check"></td>
+            <td>iPad pro</td>
+            <td>5000</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="check"></td>
+            <td>iPad Air</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='check' ></td>
+            <td>Apple Watch</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='check' ></td>
+            <td>Apple Watch</td>
+            <td>2000</td>
+        </tr>
+
+    </table>
+</form>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    var num = 0;
+    $(function () {
+        $('#cx').click(function () {
+                $('table input').prop('checked', $(this).prop('checked'));
+        });
+        $('table input').click(function () {
+           var allLength = $('table input').length;//获取所有的长度
+           var checkedLength = $ ('table input:checked').length;//获取被选中的个数
+           if(checkedLength==allLength){
+               $('#cx').prop('checked',true);
+           }
+           else {
+               $('#cx').prop('checked',false);
+           }
+        });
+    });
+</script>
+</html>

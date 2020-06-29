@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象绘制可视化数据折线图</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+</body>
+    <script>
+        //1.构造函数
+       var Line = function (ctx) {
+           //获取画布
+           this.ctx = ctx||document.querySelector('canvas').getContext('2d');
+           //获取画布大小
+           this.canvasWidth = this.ctx.canvas.width;
+           this.canvasHeight = this.ctx.canvas.height;
+           //网格大小
+           this.gridSize = 10;
+           this.gridX = Math.floor(this.canvasHeight/this.gridSize);
+           this.gridY = Math.floor(this.canvasWidth/this.gridSize);
+           //坐标系的间距
+           this.space = 20;
+           //坐标系原点
+           this.x0 = this.space;
+           this.y0 = this.canvasHeight-this.space;
+           //坐标点大小
+           this.dottedSize = 6;
+
+       }
+        //2.行为方法
+        Line.prototype.init = function (data) {
+           this.gridDrawing();
+           this.coordAxis();
+           this.connect(data);
+        }
+        //1.1绘制网格
+        Line.prototype.gridDrawing = function () {
+            //绘制x轴
+            for (var i = 0;i<this.gridX;i++){
+                this.ctx.beginPath();
+                this.ctx.strokeStyle='#eee';
+                this.ctx.moveTo(0,i*this.gridSize-0.5);
+                this.ctx.lineTo(this.canvasWidth,i*this.gridSize-0.5);
+                this.ctx.stroke();
+            }
+            //绘制y轴
+            for(var i = 0;i<this.gridY;i++){
+                this.ctx.beginPath();
+                this.ctx.moveTo(i*this.gridSize-0.5,0);
+                this.ctx.lineTo(i*this.gridSize-0.5,this.canvasHeight);
+                this.ctx.stroke();
+            }
+
+        }
+        //1.2绘制坐标系
+        Line.prototype.coordAxis = function () {
+           //绘制x轴坐标系
+           this.ctx.beginPath();
+           this.ctx.strokeStyle='#000';
+           this.ctx.moveTo(this.x0,this.y0);
+           this.ctx.lineTo(this.canvasWidth-this.space,this.y0);
+           this.ctx.lineTo(this.canvasWidth-this.space-this.dottedSize/2,this.y0+this.dottedSize/2);
+           this.ctx.lineTo(this.canvasWidth-this.space-this.dottedSize/2,this.y0-this.dottedSize/2);
+           this.ctx.lineTo(this.canvasWidth-this.space,this.y0);
+           this.ctx.fill();
+            this.ctx.stroke();
+
+           //绘制y轴坐标系
+           this.ctx.beginPath();
+           this.ctx.moveTo(this.space,this.y0);
+           this.ctx.lineTo(this.space,this.space);
+           this.ctx.lineTo(this.space+this.dottedSize/2,this.space+this.dottedSize/2);
+           this.ctx.lineTo(this.space-this.dottedSize/2,this.space+this.dottedSize/2);
+           this.ctx.lineTo(this.space,this.space);
+           this.ctx.fill();
+            this.ctx.stroke();
+        }
+        //1.3画点 连线
+        Line.prototype.connect = function (data){
+           var that = this;
+           var lineX = 0;
+           var lineY = 0;
+           data.forEach(function (item,i) {
+               //把坐标轴转化为canvas坐标轴
+               var dootedX = that.x0 + item.x;
+               var dootedY = that.y0 - item.y;
+                //绘制点
+               that.ctx.beginPath();
+               that.ctx.moveTo(dootedX-that.dottedSize/2,dootedY-that.dottedSize/2);
+               that.ctx.lineTo(dootedX+that.dottedSize/2,dootedY-that.dottedSize/2);
+               that.ctx.lineTo(dootedX+that.dottedSize/2,dootedY+that.dottedSize/2);
+               that.ctx.lineTo(dootedX-that.dottedSize/2,dootedY+that.dottedSize/2);
+               that.ctx.lineTo(dootedX-that.dottedSize/2,dootedY-that.dottedSize/2);
+               that.ctx.stroke();
+               that.ctx.fill();
+               //连接
+               if(i==0){
+                   that.ctx.beginPath();
+                   that.ctx.moveTo(that.x0,that.y0);
+                   that.ctx.lineTo(dootedX,dootedY);
+                   that.ctx.stroke();
+               }
+               else  {
+                   that.ctx.beginPath();
+                   that.ctx.moveTo(lineX,lineY);
+                   that.ctx.lineTo(dootedX,dootedY);
+                   that.ctx.stroke();
+
+               }
+               //将上一次的点保存下来,作为下一个的起点
+               lineX = dootedX;
+               lineY = dootedY;
+           });
+        }
+        //坐标点数据
+        var data = [
+            {
+                x:120,
+                y:100,
+            },
+            {
+                x:200,
+                y:250,
+            },
+            {
+                x:300,
+                y:300,
+            },
+            {
+                x:350,
+                y:200,
+            },
+            {
+                x:500,
+                y:80,
+            }
+        ];
+        //3.初始化
+        var line = new Line();
+        line.init(data);
+    </script>
+</html>

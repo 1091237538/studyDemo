@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <span></span>
+        <section></section>
+    </div>
+</body>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        var span = document.getElementsByTagName('span')[0];
+        var section = document.getElementsByTagName('section')[0];
+        Element.prototype.inserAfter = function (target,after) {
+            var before = after.nextElementSibling;
+            if(before==null){
+                this.appendChild(target);
+            }
+            else  {
+                this.insertBefore(target,before);
+            }
+        }
+    </script>
+</html>

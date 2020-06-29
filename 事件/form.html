@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                clear: both;
+                margin: 0 auto;
+                text-align: center;
+            }
+            table td {
+                width: 20px;
+            }
+            .qx-box {
+                    margin: 0 auto;
+                    width: 300px;
+                    height: 50px;
+
+            }
+            .qx-box span {
+                float: left;
+                display: block;
+                height: 50px;
+                border: 1px solid black;
+            }
+            .qx-box span:nth-child(1){
+                line-height: 50px;
+                text-align: center;
+                width: 51px;
+            }
+            .qx-box span:nth-child(2){
+                width: 150px;
+            }
+            .qx-box span:nth-child(3){
+                width: 93px;
+            }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <div class="qx-box">
+            <span>
+                <input type="checkbox">
+            </span>
+            <span></span>
+            <span></span>
+        </div>
+        <table  border="1" cellspacing="0" width="300px" height="200px">
+            <tr>
+                <td><input type="checkbox" name="check"></td>
+                <td>iphone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="check"></td>
+                <td>iPad pro</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="check"></td>
+                <td>iPad Air</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name='check'></td>
+                <td>Apple Watch</td>
+                <td>2000</td>
+            </tr>
+        </table>
+    </form>
+</body>
+        <script>
+            var newInput = document.querySelector('.qx-box').querySelector('input');
+            var input = document.querySelector('table').querySelectorAll('input');
+            var count = 0;
+            newInput.onclick = function (){
+                for(var i = 0;i<input.length;i++) {
+                        input[i].checked = this.checked;
+                }
+            }
+            for(var j=0;j<input.length;j++){
+                (function (j) {
+                    input[j].onclick=function () {
+                        if(input[j].checked==true){
+                           count++;
+                           if(count==4){
+                               newInput.checked=true;
+                           }
+                        }else {
+                            count--;
+                            newInput.checked=false;
+                        }
+                    }
+                })(j);
+            }
+        </script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            list-style: none;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>123</div>
+    <button>删除节点</button>
+    <button>克隆</button>
+    <button>清除</button>
+    <ul>
+        <li>被克隆体</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span></span>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        $li = $('<a href="http://www.baidu.com">百度</a>');//创建一个jq对象
+        // $('div').append($li);//将创建的jq对象插入文档的最后面
+        // $li.appendTo($('div'));//将创建的jq对象插入到文档的最后面
+        //  $('div').prepend($li);//将创建的jq对象插入文档最前面
+        //  $li.prependTo($('div'));//将创建的jq对象插入到文档最前面
+        //  $('div').after($li);//将创建的jq对象插入到文档的后面作为兄弟
+        //  $('div').before($li);//将创建的jq对象插入到文档的前面作为兄弟
+
+        //以上是添加节点
+        //     $('button').eq(0).click(function () {
+        //         $('div').remove();//删除自身
+        //     });
+        //     $('button').eq(1).click(function () {
+        //         var value = $('ul>li').clone();
+        //         $('span').append(value);
+        //     });
+        //以上是克隆节点
+        $('button').eq(2).click(function () {
+            // $('ul').empty();//删除当前元素的所有子元素，并且会删除所有子元素创建的事件
+            // $('ul').html('');//删除当前元素的所有子元素，但是不会删除所有子元素创建的事件，造成内存泄漏
+        })
+    });
+</script>
+</html>

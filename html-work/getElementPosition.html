@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: absolute;
+            left: 100px ;
+            top: 100px ;
+            width: 100px ;
+            height: 100px ;
+            border: 1px solid black;
+        }
+        span {
+            position: absolute;
+            width: 80px;
+            height: 80px ;
+            background-color: red;
+        }
+        section {
+            position: absolute;
+            left: 20px;
+            width: 50px ;
+            height: 50px ;
+           background-color: #2B91D5;
+        }
+    </style>
+</head>
+<body>
+        <div>
+            <span>
+                <section></section>
+            </span>
+        </div>
+</body>
+<!--    封装一个方法元素获取距离文档的坐标-->
+    <script>
+        var section = document.getElementsByTagName('section')[0];
+        Element.prototype. getElementPosition = function (){
+                if(this.offsetParent){
+                    if(this.offsetParent == document.body){
+                        return {
+                            x:this.offsetLeft,
+                            y:this.offsetTop
+                        }
+                    }
+                }
+        }
+    </script>
+</html>

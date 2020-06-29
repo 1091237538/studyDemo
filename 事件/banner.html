@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+       section {
+           position: absolute;
+           left: 50%;
+           transform: translateX(-50%);
+       }
+        .top,
+        .banner,
+        .bottom {
+            width: 600px;
+        }
+        .top {
+            height: 200px;
+            background: pink;
+        }
+        .banner {
+            height: 600px;
+            background: #47A0DB;
+        }
+        .bottom {
+            height:600px;
+            background: #3C3C3C;
+        }
+        .right {
+            position: absolute;
+            width: 70px;
+            height: 150px;
+            background: #3C3C3C;
+            top: 300px;
+            right:0px;
+        }
+    </style>
+</head>
+<body>
+   <section>
+    <div class="top"></div>
+    <div class="banner"></div>
+    <div class="bottom"></div>
+   </section>
+    <div class="right"></div>
+</body>
+    <script>
+        var section = document.querySelector('section');
+        var top = document.querySelector('.top');
+        var banner = document.querySelector('.banner');
+        var right = document.querySelector('.right');
+        var bannerTop =  banner.offsetTop;
+        var rightTop  =  right.offsetTop - bannerTop;
+        document.addEventListener('scroll',function () {
+            if(window.pageYOffset>=bannerTop){
+                right.style.position='fixed';
+                right.style.top = rightTop +'px';
+            }else  {
+                right.style.position='absolute';
+                right.style.top = '300px';
+            }
+        });
+    </script>
+</html>

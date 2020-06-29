@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            background-color: red;
+        }
+        .content {
+            width: 200px ;
+            height: 200px ;
+            border: 2px solid yellow;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button>111</button>
+    <button>222</button>
+    <button>333</button>
+    <div class="content">zzz</div>
+    <div class="content">xxx</div>
+    <div class="content">ccc</div>
+</body>
+    <script>
+        var btn = document.getElementsByTagName('button');
+        var div = document.getElementsByTagName('div');
+        for(var i = 0;i<btn.length;i++){
+            (function (n) {
+                btn[n].onclick = function () {
+                    for(var j = 0;j<btn.length;j++) {
+                        btn[j].className="";
+                        div[j].style.display='none';
+                    }
+                    this.className="active";
+                    div[n].style.display='block';
+                }
+
+            }(i))
+        }
+    </script>
+</html>

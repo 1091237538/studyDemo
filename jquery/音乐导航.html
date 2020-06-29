@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        ul {
+            width: 800px;
+            height: 60px;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+            background: black;
+        }
+        li {
+            position: relative;
+            width: 100px;
+            float: left;
+            line-height: 60px;
+        }
+
+        li span {
+            position: absolute;
+            left: 0px;
+            top: 60px;
+            width: 100px;
+            height: 60px;
+            background: yellow;
+            z-index: 4;
+        }
+        li a {
+            position: relative;
+            font-size: 26px;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li><a href="javascript:;">导航1</a><span></span></li>
+        <li><a href="javascript:;">导航2</a><span></span></li>
+        <li><a href="javascript:;">导航3</a><span></span></li>
+        <li><a href="javascript:;">导航4</a><span></span></li>
+        <li><a href="javascript:;">导航5</a><span></span></li>
+        <li><a href="javascript:;">导航6</a><span></span></li>
+        <li><a href="javascript:;">导航7</a><span></span></li>
+        <li><a href="javascript:;">导航8</a><span></span></li>
+    </ul>
+    <audio src="audio/41__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/42__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/43__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/44__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/45__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/46__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/47__爱给网_aigei_com.mp3"></audio>
+    <audio src="audio/51__爱给网_aigei_com.mp3"></audio>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('li').mouseenter(function () {
+           $(this).children('span').stop().animate({top:0}).parent().siblings().children('span').stop().animate({top:60});
+           var idx = $(this).index();
+           $('audio').get(idx).load();
+           $('audio').get(idx).play();
+       }).mouseleave(function () {
+           $('span').stop().animate({top:60});
+       });
+       var key =true; //添加节流阀 防止事件一只触发  按下时 用key来锁住  只有弹起时才执行下一个
+       $(document).on('keydown',function (e) {
+           if(key){
+           var code = e.keyCode;
+           if(code>=49&&code<=57){
+               $('li').eq(code-49).trigger('mouseenter');
+             }
+            key = false;
+           }
+       });
+       $(document).on('keyup',function (e) {
+           key = true;
+           var code = e.keyCode;
+           if(code>=49&&code<=57){
+               $('li').eq(code-49).trigger('mouseleave');
+           }
+       });
+    });
+
+</script>
+</html>

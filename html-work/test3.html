@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            position: absolute;
+            left: 20px;
+            width: 300px ;
+            height: 100px ;
+            display: none;
+            /*transition:all 0.2s;*/
+        }
+        .content-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 5px solid #39E9E9 ;
+        }
+        .content-box textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            outline: none;
+            border: 0;
+            text-indent: 2em;
+
+        }
+        .threeOne,
+        .threeTwo {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+        .threeOne {
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #39E9E9;
+            bottom: -22px ;
+            left:35px;
+        }
+        .threeTwo {
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #fff;
+            bottom: -17px;
+            left: 35px;
+        }
+        button   {
+            position: relative;
+            top: 140px ;
+            left: 40px;
+        }
+        ::selection {
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+        <section id="TS">
+            <div class="content-box">
+                <textarea></textarea>
+                <span class="threeOne"></span>
+                <span class="threeTwo"></span>
+            </div>
+        </section>
+        <button onclick="test();" >点击有惊喜</button>
+        <script>
+            var count = 1;
+            function test() {
+
+                var demo = document.getElementById('TS');
+                if(count == 1) {
+                    demo.style.display = 'block';
+                    count = 0;
+                }else {
+                    demo.style.display = 'none';
+                    count=1;
+                }
+            }
+        </script>
+</body>
+</html>

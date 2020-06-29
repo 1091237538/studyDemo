@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 5000px;
+        }
+        div {
+            position: fixed;
+            right: 20px;
+            bottom: 50px;
+            width: 30px;
+            height: 85px;
+            background: pink;
+            text-align: center;
+            display: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div>返回顶部</div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $(window).scroll(function () {
+          if($(window).scrollTop()>=500){
+              $('div').stop().fadeIn(1000);
+          }else {
+              $('div').stop().fadeOut(1000);
+          }
+       });
+       $('div').click(function () {
+          $('html,body').stop().animate({scrollTop:0},300);
+       });
+    });
+</script>
+</html>

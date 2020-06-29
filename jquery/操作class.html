@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="father person"></div>
+    <button>添加son类</button>
+    <button>删除son类</button>
+    <button>切换son类</button>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        $('button').eq(0).click(function () {
+            $('div').addClass('son');//添加son类，且不会影响原本存在的类
+        });
+        $('button').eq(1).click(function () {
+            $('div').removeClass('son');//删除son类，且不会影响原本存在的类
+        });
+        $('button').eq(2).click(function () {
+            $('div').toggleClass('son');//判断这个元素是否存在这个类，如果不存在就添加，存在就删除，也不会影响其他类
+        });
+    });
+</script>
+</html>

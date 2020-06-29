@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="http://www.baidu.com">123</a>
+<!--        封装一个阻止默认事件的函数-->
+</body>
+    <script>
+        var a = document.getElementsByTagName('a')[0];
+        document.oncontextmenu = function (e){
+            console.log('aaa');
+            cancelHandler(e);
+        }
+        a.onclick = function (e){
+            return false;
+        }
+        function cancelHandler(event){
+            if(event.addEventListener){
+                event.prevenDefault();
+            }
+            else{
+                event.returnValue = false;
+            }
+        }
+        // cancelHandler(a);
+    </script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ::selection{
+            background: transparent;
+        }
+        .wrap-box {
+            position: relative;
+            margin: 100px auto;
+            width: 600px;
+            height: 500px;
+            border: 3px solid rgba(0,0,0,.7);
+        }
+        .wrap-box .top {
+            width: 100%;
+            height: 35px;
+            border-bottom: 3px solid black;
+        }
+        .wrap-box .bottom{
+            width: 100%;
+            height: 462px;
+        }
+        .wrap-box .bottom div{
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .wrap-box .top ul {
+            width: 100%;
+            height: 100%;
+        }
+        .wrap-box .top li{
+            cursor: pointer;
+            width: 200px;
+            float: left;
+            text-align: center;
+            line-height: 35px;
+            transition: all 0.2s;
+        }
+        .color{
+            background: #39E9E9;
+        }
+    </style>
+</head>
+<body>
+       <div class="wrap-box">
+           <div class="top">
+               <ul>
+                   <li>HTML</li>
+                   <li>CSS</li>
+                   <li>JAVASCRIPT</li>
+               </ul>
+           </div>
+           <div class="bottom">
+               <div>html</div>
+               <div>css</div>
+               <div>javascript</div>
+           </div>
+           <section style="border: 1px solid black;width: 200px;text-align: center;position: absolute;top: 35px;left: 200px;display: none">123132123</section>
+       </div>
+
+</body>
+        <script>
+            var lis = document.getElementsByTagName('li');
+            var divs= document.querySelector('.bottom').querySelectorAll('div');
+            var section =document.getElementsByTagName('section')[0];
+            for(var i=0;i<lis.length;i++){
+                divs[i].setAttribute('index',i);
+                (function (n) {
+                    lis[n].onclick=function () {
+                        for(var j=0;j<lis.length;j++){
+                            lis[j].className='';
+                        }
+                        this.className='color';
+                        var index = divs[n].getAttribute('index');
+                        for(var k=0;k<divs.length;k++){
+                            divs[k].style.display='none';
+                        }
+                        divs[index].style.display='block';
+                        lis[1].onmousemove = function (){
+                            section.style.display='block';
+                        }
+                        lis[1].onmouseout = function (){
+                            section.style.display='none';
+                        }
+                    }
+                })(i);
+            }
+        </script>
+</html>

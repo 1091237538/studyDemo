@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            line-height: 200px;
+            text-align: center;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div>抽奖大赛</div>
+    <button>开始</button>
+    <button>停止</button>
+</body>
+    <script>
+        var div= document.querySelector('div');
+        var button1 = document.querySelectorAll('button')[0];
+        var button2 = document.querySelectorAll('button')[1];
+        button1.addEventListener('click',function () {
+           var timer = setInterval(function () {
+                 sj = Math.floor(Math.random()*50);
+                div.innerHTML=sj;
+            },15);
+            button2.addEventListener('click',function () {
+                clearInterval(timer);
+                if(sj==50){
+                    alert('恭喜你中奖了');
+                }
+            });
+        });
+
+    </script>
+</html>

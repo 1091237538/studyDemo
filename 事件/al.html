@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .al {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background: pink;
+            transform: rotateZ(45deg);
+            display: none;
+            animation: first 1.5s infinite alternate;
+        }
+        .al:before,
+        .al:after {
+            position: absolute;
+            content: " ";
+            display: block;
+            width: 25px;
+            height: 25px;
+            background: pink;
+            border-radius: 50%;
+        }
+        .al:before {
+            left: -15px;
+        }
+        .al:after {
+            top: -15px;
+        }
+        @keyframes first {
+            0% {
+                transform: rotateZ(45deg) scale(1);
+            }
+            50% {
+                transform: rotateZ(45deg) scale(0.5);
+            }
+            100% {
+                transform: rotateZ(45deg) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="al"></div>
+</body>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        document.onmousemove = function (e) {
+                div.style.display='block';
+                div.style.left = e.pageX-15+'px';
+                div.style.top = e.pageY-5+'px';
+        }
+    </script>
+</html>

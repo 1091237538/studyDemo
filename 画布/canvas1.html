@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+</body>
+    <script>
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var ctx = canvas.getContext('2d');
+        var canvasWidth = ctx.canvas.width;
+        var canvasHeight = ctx.canvas.height;
+        // //绘制网格
+        // var grid = 10;
+        // var xLineTotal = Math.floor(canvasHeight/grid);
+        // var yLineTotal = Math.floor(canvasWidth/grid);
+        // for(var i = 0;i<xLineTotal;i++){
+        //     ctx.beginPath();
+        //     ctx.moveTo(0,grid*i-0.5);
+        //     ctx.lineTo(canvasWidth,grid*i-0.5);
+        //     ctx.strokeStyle='#EEE';
+        //     ctx.stroke();
+        // }
+        // for(var i = 0;i<yLineTotal;i++){
+        //     ctx.beginPath();
+        //     ctx.moveTo(i*grid-0.5,0);
+        //     ctx.lineTo(i*grid-0.5,canvasWidth);
+        //     ctx.strokeStyle='#EEE';
+        //     ctx.stroke();
+        // }
+
+
+
+        // 绘制坐标系
+        // 1.首先确定坐标系距离画布的距离
+        //     确定等腰三角的大小
+        var space = 20;
+        var size  = 10;
+        //2.确定原点
+        var x0 = space;
+        var y0 = canvasHeight-space;
+        //3.绘制x轴
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(canvasWidth-space,y0);
+        ctx.stroke();
+        ctx.lineTo(canvasWidth-space-size,y0+size/2);
+        ctx.lineTo(canvasWidth-space-size,y0-size/2);
+        ctx.lineTo(canvasWidth-space,y0);
+        ctx.fill();
+
+        //4.绘制y轴
+        ctx.beginPath();
+        ctx.moveTo(x0,y0);
+        ctx.lineTo(space,space);
+        ctx.stroke();
+        ctx.lineTo(space+size/2,space+size);
+        ctx.lineTo(space-size/2,space+size);
+        ctx.lineTo(space,space);
+        ctx.fill();
+
+        // 绘制坐标点
+        // 1.根据坐标画坐标点
+        // var coord =  {
+        //     x:100,
+        //     y:100
+        // }
+        //2.坐标点大小
+        // var coordSize = 6;
+        // ctx.moveTo(coord.x-coordSize/2,coord.y-coordSize/2);
+        // ctx.lineTo(coord.x+coordSize/2,coord.y-coordSize/2);
+        // ctx.lineTo(coord.x+coordSize/2,coord.y+coordSize/2);
+        // ctx.lineTo(coord.x-coordSize/2,coord.y+coordSize/2);
+        // ctx.closePath();
+        // ctx.fill();
+        // ctx.stroke();
+    </script>
+</html>

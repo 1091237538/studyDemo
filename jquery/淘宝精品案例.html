@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+        .left,
+        .right,
+        .middle {
+            position: absolute;
+            /*border: 1px solid black;*/
+            text-align: center;
+            height: 100%;
+        }
+        .left {
+            width: 50px;
+            left: 0;
+        }
+        .right {
+            width: 50px;
+            right: 0;
+        }
+        .middle {
+            width: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .middle li {
+            line-height: 400px;
+            height: 100%;
+            display: none;
+        }
+        .left li,
+        .right li {
+            margin: 2px 0;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #ccc;
+        }
+        .left li:hover,
+        .right li:hover  {
+            background: rgba(0,0,0,.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <div class="left">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+            </ul>
+        </div>
+        <div class="middle">
+            <ul>
+                <li style="display: block;">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        $('.left>ul>li').mouseenter(function () {
+         var idx = $(this).index();
+         $('.middle>ul>li').eq(idx).show().siblings().hide();
+        });
+        $('.right>ul>li').mouseenter(function () {
+            var idx = $(this).index()+9;
+            $('.middle>ul>li').eq(idx).show().siblings().hide();
+        })
+    });
+</script>
+</html>

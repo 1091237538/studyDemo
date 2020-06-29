@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            display: none;
+        }
+        .xBox {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            border-radius: 50%;
+            right: -10px;
+            top: -10px;
+        }
+        .back {
+            position: fixed;
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #39E9E9;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:;">点击后弹出模态框</a>
+    <div class="box">
+        <div class="xBox"></div>
+    </div>
+    <div class="back"></div>
+</body>
+    <script>
+        var a = document.getElementsByTagName('a')[0];
+        var box = document.querySelector('.box');
+        var xBox = document.querySelector('.xBox');
+        var back = document.querySelector('.back');
+        a.addEventListener('click',function () {
+            box.style.display='block';
+            back.style.display='block';
+        });
+        box.addEventListener('mousedown',function (e) {
+            var x = e.pageX-box.offsetLeft;
+            var y = e.pageY-box.offsetTop;
+            document.addEventListener('mousemove',move);
+            function move(e) {
+                box.style.left = e.pageX-x+'px';
+                box.style.top = e.pageY-y+'px';
+            }
+            box.addEventListener('mouseup',function () {
+                document.removeEventListener('mousemove',move);
+            });
+        });
+        xBox.addEventListener('click',function () {
+            box.style.display='none';
+            back.style.display='none';
+        })
+    </script>
+</html>

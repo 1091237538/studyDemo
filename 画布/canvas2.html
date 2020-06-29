@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+</body>
+    <script>
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var ctx = canvas.getContext('2d');
+        var r = 150;
+        //圆心
+        var circleX = ctx.canvas.width/2;
+        var circleY = ctx.canvas.height/2;
+        var num = 4;
+        var getRandomColor = function () {
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+        var angle = Math.PI*2/num;
+        for(var i = 0;i<num;i++){
+              ctx.beginPath();
+              var startAngle = i*angle;
+              var endAngle = (i+1)*angle;
+              ctx.moveTo(circleX,circleY);
+              ctx.arc(circleX,circleY,r,startAngle,endAngle);
+              ctx.fillStyle=getRandomColor();
+              ctx.fill();
+        }
+    </script>
+
+</html>

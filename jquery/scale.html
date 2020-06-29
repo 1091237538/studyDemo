@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <img src="../images/tu.jpg" >
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('img').on('mouseenter',function () {
+            $(this).css({transform: 'translate(-50%,-50%) scale(2)'});
+       }).on('mouseleave',function () {
+            $(this).css({transform: 'translate(-50%,-50%)'});
+       });
+    });
+</script>
+</html>

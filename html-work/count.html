@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    分: <input type="text" value="0">
+    秒: <input type="text" value="0">
+</body>
+        <script>
+            var input = document.getElementsByTagName('input')[0];
+            var newInput = document.getElementsByTagName('input')[1];
+            var count = 0;
+            var newCount =0;
+                var timer = setInterval(function () {
+                    count++;
+                    if (count == 60){
+                        count = 0;
+                        newCount++;
+                    }
+                    newInput.value = count;
+                    input.value = newCount;
+                    if (newCount == 3) {
+                        clearInterval(timer);
+                    }
+                }, 1000);
+
+        </script>
+</html>

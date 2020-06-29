@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .box {
+            width: 200px;
+            height: 2000px;
+        }
+        .wrap-box {
+            width: 200px;
+            border: 2px solid black;
+            height: 100%;
+
+        }
+        .wrap-box a{
+            display: inline-block;
+            width: 100%;
+            color: #fff;
+            border-bottom:1px solid  #666666;
+        }
+        .wrap-box>ul li{
+            width: 100%;
+            line-height: 40px;
+            background-color: skyblue;
+        }
+        .two {
+            display: none;
+        }
+        .two li {
+            color: pink;
+            background-color: #9f7dcc!important;
+            border-bottom: 1px solid rgba(0,0,0,.5);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="wrap-box">
+        <ul>
+            <li>
+                <a href="javascript:;">导航一</a>
+                <ul class="two">
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">导航二</a>
+                <ul class="two">
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">导航三</a>
+                <ul class="two"></ul>
+            </li>
+            <li>
+                <a href="javascript:;">导航四</a>
+                <ul class="two"></ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+           var $arr = $(['red','skyblue','yellow','green']);
+           $arr.each(function (index,elem) {
+              $('<li>'+elem+'</li>').appendTo('.two');
+           });
+           var $li = $('.wrap-box').children().children('li');
+           $li.on('mouseenter',function () {
+             $(this).children('.two').stop().slideDown().end().siblings().children('.two').stop().slideUp();
+           }).on('mouseleave',function () {
+              $(this).children('.two').stop().slideUp();
+           });
+    });
+</script>
+</html>

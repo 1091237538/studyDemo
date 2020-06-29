@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        div {
+            position: relative;
+            top: 10px;
+            width: 50px;
+            height: 30px;
+            background-color:#aeaeae ;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        div a {
+            position: absolute;
+            margin: 2px;
+            width: 25px;
+            height: 25px;
+            color: #aeaeae;
+            line-height: 25px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="javascript:;">弹</a>
+    </div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+        var key = true;
+        $('div').click(function () {
+            if(key) {
+                $(this).css({
+                    backgroundColor: 'skyblue',
+                    transition: 'all 0.5s'
+                }).children('a').stop().animate({left:21});//问题待定
+                key = false;
+            }else {
+                $(this).css({
+                    backgroundColor: '#aeaeae',
+                    transition: 'all 0.5s'
+                }).children('a').stop().animate({left: 0});
+                key = true;
+            }
+        });
+    });
+</script>
+</html>

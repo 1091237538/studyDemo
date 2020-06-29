@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .wrap-box {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background: deeppink;
+            margin: 100px auto;
+            transform: rotateZ(45deg);
+            animation:demo 1.5s infinite;
+        }
+        .wrap-box:before,
+        .wrap-box:after{
+            content:" ";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background:deeppink;
+        }
+        .wrap-box:before {
+            transform: translateX(-50%);
+        }
+        .wrap-box:after {
+            transform: translateY(-50%);
+        }
+        @keyframes demo {
+                0% {
+                    opacity: 1;
+                    transform: scale(1) rotateZ(45deg);
+                }
+                50% {
+                    opacity: 0.3;
+                    transform: scale(0.5) rotateZ(45deg);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) rotateZ(45deg);
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box"></div>
+
+</body>
+<!--            <script>-->
+<!--                function type(target){-->
+<!--                    var str={-->
+<!--                        '[object Array]':'array',-->
+<!--                        '[object Object]':'object',-->
+<!--                        '[object Number]':'number-object',-->
+<!--                        '[object String]':'string-obj',-->
+<!--                        '[object Boolean]':'boolean-object'-->
+<!--                    }-->
+<!--                    if(target === null){-->
+<!--                        return "null";-->
+<!--                    }-->
+<!--                    if(typeof (target) =='object'){-->
+<!--                        var temp = Object.prototype.toString.call(target);-->
+<!--                        return str[temp];-->
+<!--                    }else {-->
+<!--                        return typeof (target);-->
+<!--                    }-->
+
+<!--                }-->
+<!--            </script>-->
+            <script>
+             // var arr = [1,1,1,1,1,2,2,2,3,3,3,3,0,0];
+             // Array.prototype.unique = function () {
+             //     var temp = {},
+             //         arr = [],
+             //         len =this.length;
+             //     for(var i=0;i<len;i++){
+             //         if(!temp[this[i]]){
+             //             temp[this[i]] = 'yang';
+             //             arr.push(this[i]);
+             //         }
+             //     }
+             //     return arr;
+             // // }
+             //    var str='aaabbsssxzz';
+             //    String.prototype.un = function (){
+             //        var temp={},
+             //            str2='',
+             //            len =this.length;
+             //        for(var i=0;i<len;i++){
+             //            if(!temp[this[i]]){
+             //                str2+=this[i];
+             //                temp[str[i]]=1;
+             //            }
+             //        }
+             //        return temp;
+             //    }
+             // "use strict"
+            var obj={
+                name:"yanghong",
+                age:19,
+                sex:'male',
+                a:[],
+                b:{}
+            }
+            var objSon={
+
+            }
+            function clone(a,b){
+                var str='[object Array]';
+                var toStr=Object.prototype.toString;
+                 for(var prop in a){
+                     if(a.hasOwnProperty(prop)) {
+                         if (a[prop]!=='null' && typeof (a[prop]) == 'object') {
+                             b[prop]=toStr.call(a[prop])==str?[]:{};
+                             clone(a[prop],b[prop]);
+                         }else {
+                             b[prop] = a[prop];
+                         }
+                     }
+                 }
+                 return b;
+            }
+            clone(obj,objSon);
+            </script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        OldFather.prototype.lastName='laoyang';
+        function OldFather(){}
+        function Person(){}
+        var inherit = (function(){
+                function F(){};
+                return function (a,b) {
+                    F.prototype = b.prototype;
+                    a.prototype = new F();
+                    a.prototype.constructor = a;
+                }
+        }());
+        inherit(Person,OldFather);
+        var oldfather = new OldFather();
+        var person = new Person();
+    </script>
+</body>
+</html>

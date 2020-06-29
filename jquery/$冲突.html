@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3/jquery.js"></script>
+    <script src="kz.js"></script>
+</head>
+<body>
+</body>
+<script>
+    console.log($);//此时的$时kz.js里面的一个对象 并不是jquery里面的 所以造成了冲突 所以为了能够使用jquery
+                  //把jq文件放到最后,但此时就访问不了kz里面的$对象了,所以用$.noConflict( ); 这个方法释放
+                 //$的控制权,简单来说就是把$给别人 自己不用了,但是此时jquery怎么写入口函数呢
+    jQuery(function () {
+
+    });//这是jquery原本的样子---->$=jquery
+    //但是为了方便我们可以把$的控制权释放之后转让给一个变量来接收 这样就可以使用jq方法了 比如  $$ = $.noConflict();
+    //就可以使用 $$(function(){}) 来使用了
+    //这样我们就解决了$冲突问题
+</script>
+</html>

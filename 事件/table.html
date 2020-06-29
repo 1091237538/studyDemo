@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table  thead th {
+            height: 35px;
+            background: #f8f8f8;
+        }
+        table  thead th,
+        table tbody td{
+            width: 100px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        table  thead th:nth-child(2) {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table cellspacing="0">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>分数</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+    <script>
+        // 动态创建表格
+        // 1.根据传过来的数组的长度创建tr
+        // 2.根据传过来的数组里面的对象的属性长度创建td 这里使用遍历对象
+        // 3.删除数据 删除节点
+        var obj = [
+                {
+                姓名:'yanghong',
+                科目:'javascript',
+                分数:100
+            },{
+                姓名:'lixiaolong',
+                科目:'javascript',
+                分数:100
+
+            },{
+                姓名:'lqx',
+                科目:'javascript',
+                分数:100
+            }];
+        var tbody = document.getElementsByTagName('tbody')[0];
+        for(var i = 0;i<obj.length;i++){
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for(var k in obj[i]){
+                var td = document.createElement('td');
+                td.innerHTML = obj[i][k];
+                tr.appendChild(td);
+            }
+            var Atd = document.createElement('td');
+            Atd.innerHTML='<a href="javascript:;">close</a>';
+            tr.appendChild(Atd);
+        }
+        var as = document.querySelectorAll('a');
+        for(var j=0;j<as.length;j++){
+            (function(j){
+                as[j].onclick = function () {
+                    tbody.removeChild(this.parentNode.parentNode);
+                }
+            })(j);
+        }
+    </script>
+</html>

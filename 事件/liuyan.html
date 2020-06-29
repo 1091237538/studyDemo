@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        section {
+            position: relative;
+            margin: 0 auto;
+            width: 900px;
+            height: 900px;
+            border: 4px solid rgba(0,0,0,.8);
+        }
+        section .p-top{
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        .top{
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            height: 140px;
+            border-top: 1px solid #aeaeae;
+        }
+        .top p {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            height: 20px;
+            font-size: 14px;
+        }
+        .bottom {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 708px;
+            /*border: 1px solid red;*/
+            overflow: hidden;
+        }
+        .pl-box {
+            position: absolute;
+            top: 20px;
+            width: 400px;
+            height: 50px;
+            background: #F7F7F7;
+        }
+        .pl-input{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 370px;
+            height: 25px;
+        }
+        .pl-input input {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #aeaeae;
+            outline: none;
+        }
+        .bottom ul {
+            width: 100%;
+            height: 700px;
+            /*border: 1px solid red;*/
+        }
+        .bottom ul li a{
+            float: right;
+            color: #aeaeae;
+        }
+        .li-style {
+            width: 100%;
+            height: 70px;
+            border-top: 1px solid #aeaeae;
+            line-height: 70px;
+        }
+        .middle{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 500px;
+            height: 250px;
+            border: 1px solid grey;
+            box-shadow: 0 0 5px grey;
+            background: #E6E6E6;
+            z-index: 6;
+            display: none;
+        }
+        .middle span{
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .middle p {
+            position: absolute;
+            top: 10px;
+            color: grey;
+            font-family: Arial;
+            font-size: 14px;
+            right: 0;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .middle textarea {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 50px;
+            width: 400px;
+            height: 100px;
+            resize: none;
+            font-size: 14px;
+            text-indent: 1em;
+            outline: none;
+        }
+        .middle footer {
+            position: absolute;
+            right: 50px;
+            bottom: 10px;
+            width: 80px;
+            height: 35px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            opacity:.4;
+        }
+        .footer-before {
+            opacity: 1;
+        }
+        .middle footer input{
+            width: 100%;
+            height: 100%;
+            background: #47A0DB;
+            border-radius: 5px;
+            color: #fff;
+            border: 0;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p class="p-top">听友评论</p>
+        <div class="top">
+            <div class="pl-box">
+                <div class="pl-input">
+                    <input type="text" placeholder="发表评论">
+                </div>
+            </div>
+            <p>精彩评论</p>
+        </div>
+         <section class="middle">
+             <p>X</p>
+             <span>歌曲:</span>
+             <textarea placeholder="发表评论" maxlength="140" ></textarea>
+             <footer>
+                 <input type="submit" value="评论" >
+             </footer>
+         </section>
+        <div class="bottom">
+                <ul></ul>
+        </div>
+    </section>
+</body>
+    <script>
+        var fbInput = document.querySelector('.pl-input').querySelector('input');
+        var middle = document.querySelector('.middle');
+        var close = middle.querySelector('p');
+        var text = middle.querySelector('textarea');
+        var fbbutton = middle.querySelector('input');
+        var footer = middle.querySelector('footer');
+        var ul =document.querySelector('.bottom').querySelector('ul');
+        fbInput.onfocus = function () {
+            middle.style.display='block';
+            text.setAttribute('autofocus','autofocus');
+        }
+        text.oninput = function () {
+            if(!text.value==''){
+                fbbutton.removeAttribute('disabled');
+                footer.style.opacity='1';
+                fbbutton.style.cursor='pointer';
+            }
+            else {
+                fbbutton.setAttribute('disabled','disabled');
+                footer.style.opacity='.4';
+
+            }
+        }
+        fbbutton.onclick = function () {
+            var li = document.createElement('li');
+            ul.insertBefore(li,ul.children[0]);
+            li.className='li-style';
+            li.innerHTML=text.value+'<a href="javascript:;">删除</a>';
+            var as = document.querySelectorAll('a');
+            for(var i =0;i<as.length;i++){
+                as[i].onclick=function () {
+                    ul.removeChild(this.parentNode);
+                }
+            }
+            text.value='';
+            middle.style.display='none';
+        }
+        close.onclick = function () {
+            text.value = '';
+            middle.style.display = 'none';
+        }
+    </script>
+</html>

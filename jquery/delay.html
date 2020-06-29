@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: pink;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button>delay</button>
+    <div></div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('button').on('click',function () {
+           $('div').fadeIn(1000).delay(2000).fadeOut(1000);
+       });
+    });
+</script>
+</html>

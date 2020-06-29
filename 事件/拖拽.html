@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+        section {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <section></section>
+    <div></div>
+</body>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        function move(e){
+            var x = e.pageX-div.offsetWidth/2;
+            var y = e.pageY-div.offsetHeight/2;
+            div.style.left=x+'px';
+            div.style.top =y+'px';
+        }
+        div.addEventListener('mousedown',function () {
+            document.addEventListener('mousemove',move);
+                 div.addEventListener('mouseup',function () {
+                     document.removeEventListener('mousemove',move);
+            });
+        });
+    </script>
+</html>

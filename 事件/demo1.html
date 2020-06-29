@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 650px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .box1,
+        .box2,
+        .box3 {
+            float: left;
+            width: 200px ;
+            height: 200px;
+            border:1px solid black;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <ul>
+        <li class="box1"></li>
+        <li class="box2"></li>
+        <li class="box3"></li>
+        </ul>
+    </div>
+</body>
+    <script>
+        var wrapBox = document.querySelector('.wrap-box');
+        var lis = document.querySelectorAll('li');
+        wrapBox.addEventListener('click',function(e) {
+                for(var i=0;i<lis.length;i++){
+                    lis[i].style.backgroundColor='#fff';
+                    if(e.target===lis[i]){
+                        e.target.style.backgroundColor='red';
+                    }
+                }
+            }
+        ,false);
+    </script>
+</html>

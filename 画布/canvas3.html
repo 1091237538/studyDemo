@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+     <canvas width="600" height="400"></canvas>
+</body>
+    <script>
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var ctx = canvas.getContext('2d');
+        var x0 = ctx.canvas.width/2;
+        var y0 = ctx.canvas.height/2;
+        var data=[6,20,10,4];
+        var arr = [];
+        var r = 150;
+        var total = 0;
+        var angle = 0;
+        // var endAngle = 0;
+        var getRandomColor = function () {
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+        data.forEach(function (item,i) {
+            total += item; //总人数
+            angle = Math.PI*2*(item/total); // 圆* 人数/总人数  每一组人占的弧度
+            arr.push(angle);//在arr里面放4个组占的弧度值
+        });
+        var startAngle = 0;
+        arr.forEach(function (item,i) {
+            endAngle = startAngle + item; //结束位置由 起始位置+弧度算出
+            ctx.beginPath();
+            ctx.moveTo(x0,y0);
+            ctx.arc(x0,y0,150,startAngle,endAngle);
+            ctx.fillStyle=getRandomColor();
+            ctx.fill();
+            startAngle = endAngle; //再由结束位置作为下一个起始位置
+        });
+
+    </script>
+</html>

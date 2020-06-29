@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        div {
+            position: relative;
+            margin: 0 auto;
+            width: 502px ;
+            height: 420px ;
+            /*overflow: hidden;*/
+            border: 1px solid black;
+        }
+        .span-style {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height:15px ;
+        }
+        div ul {
+            position: absolute;
+            width: 1510px;
+            height: 400px;
+        }
+        div ul li {
+            float: left;
+            width: 500px ;
+            height:400px ;
+            text-align: center;
+            border: 1px solid black;
+            line-height: 400px;
+        }
+        span {
+            display: block;
+            float: left;
+            margin-left: 13px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 3px solid #aeaeae;
+            z-index: 6;
+        }
+        a {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            width: 25px;
+            height: 70px;
+            color: #aeaeae;
+            font-size: 30px;
+            line-height: 70px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(0,0,0,.5);
+        }
+    </style>
+
+</head>
+<body>
+        <div>
+            <a href="http://www.baidu.com">></a>
+           <ul>
+               <li>1</li>
+               <li>2</li>
+               <li>3</li>
+           </ul>
+            <div class="span-style">
+            <span></span>
+            <span></span>
+            <span></span>
+            </div>
+        </div>
+</body>
+    <script>
+    var a = document.getElementsByTagName('a')[0];
+    var ul = document.getElementsByTagName('ul')[0];
+    var span = document.getElementsByTagName('span');
+    a.addEventListener('click',function(){
+            cancelHandler();
+    },false)
+    function cancelHandler(){
+        event.preventDefault();
+    }
+    // a.addEventListener('click',function () {
+    //     ul.style.left = ul.offsetLeft - 500 +'px';
+    // },false)
+    </script>
+</html>

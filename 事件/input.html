@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../icon/iconfont.css">
+    <style>
+
+        span{
+            position: relative;
+            top: 2px;
+            left: -24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="请输入用户名">
+    <br>
+    <input  type="password" placeholder="请输入密码" >
+    <span class="iconfont icon-yanjing_yincang_o"></span>
+</body>
+    <script>
+        var input =document.getElementsByTagName('input')[0];
+        var inputTwo =document.getElementsByTagName('input')[1];
+        var span = document.getElementsByTagName('span')[0];
+        var key =true;
+        span.onclick = function(){
+            if(key) {
+                inputTwo.type = 'text';
+                span.className='iconfont icon-yanjing_xianshi_o';
+                key=false;
+            }
+            else {
+                inputTwo.type='password';
+                span.className='iconfont icon-yanjing_yincang_o';
+                key=true;
+            }
+        }
+            input.onfocus = function () {
+                if(input.placeholder=='请输入用户名'){
+                    input.placeholder=' ';
+                }
+            }
+            input.onblur=function (){
+                if(input.placeholder==' '){
+                    input.placeholder='请输入用户名';
+                }
+            }
+
+
+            inputTwo.onfocus = function () {
+                if(inputTwo.placeholder=='请输入密码'){
+                    inputTwo.placeholder=' ';
+                }
+            }
+            inputTwo.onblur=function (){
+                if(inputTwo.placeholder==' '){
+                    inputTwo.placeholder='请输入密码';
+                }
+            }
+            inputTwo.oninput = function (){
+                password=(this.value);
+            }
+    </script>
+</html>

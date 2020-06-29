@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<button id="btn1">删除内容</button>
+<button id="btn2">添加内容</button>
+    <ul>
+        <li>
+            <span>1</span>
+            <a href="javascript:;">delet</a>
+        </li>
+        <li>
+            <span>2</span>
+            <a href="javascript:;">delet</a>
+        </li>
+        <li>
+            <span>3</span>
+            <a href="javascript:;">delet</a>
+        </li>
+    </ul>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('#btn1').on('click',function () {
+          $('ul').empty();
+       });
+       $('#btn2').on('click',function () {
+          $('<li><span>我是新添加的内容</span><a href="javascript:;">delet</li>').appendTo($('ul'));
+       });
+       $('ul').on('click','a',function () {
+          $(this).parent().remove();
+       });
+    });
+</script>
+</html>

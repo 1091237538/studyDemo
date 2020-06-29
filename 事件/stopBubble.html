@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    封装取消冒泡的函数-->
+    <script>
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+        div.style.width='100px';
+        div.style.height='100px';
+        div.onclick = function (e){
+            stopBubble(e);               /* 这个e是 系统传进来的 */
+            div.style.backgroundColor='red';
+        }
+        document.onclick = function (){
+            console.log('111');
+        }
+
+
+        function stopBubble(event){
+                if(event.stopPropagation){
+                    event.stopPropagation();
+                }
+                else {
+                    e.cancelBubble = true;  /*取消冒泡 这个是ie的方法*/
+                }
+        }
+    </script>
+</body>
+</html>

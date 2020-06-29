@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: absolute;
+            left: 0;
+            top: 10;
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <button>前进</button>
+    <button>后退</button>
+    <div></div>
+</body>
+    <script>
+        var button1 = document.querySelectorAll('button')[0];
+        var button2 = document.querySelectorAll('button')[1];
+        var div = document.getElementsByTagName('div')[0];
+        function animate(elem,target,callback){
+            clearInterval(elem.timer);
+            elem.timer =  setInterval(function(){
+                var stop = (target - elem.offsetLeft)/10;//步长慢慢变小 （目标值减去自身的位置）/10
+                stop = stop>0?Math.ceil(stop):Math.floor(stop);
+                 if(elem.offsetLeft==target){
+                     clearInterval(elem.timer);
+                     if(callback){
+                         callback();
+                     }
+                 }
+                 elem.style.left = elem.offsetLeft +stop+'px';
+            },15);
+        }
+        button1.addEventListener('click',function () {
+            animate(div,100);
+        });
+        button2.addEventListener('click',function () {
+           animate(div,500);
+        });
+    </script>
+</html>

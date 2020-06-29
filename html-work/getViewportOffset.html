@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--    封装一个getViewportOffset()可以查看浏览器可视化尺寸-->
+        <script>
+            function getViewportOffset (){
+                if(window.innerHeight) {
+                    return {
+                        w: window.innerWidth,
+                        h: window.innerHeight
+                    }
+                }else {
+                    if(document.compatMode === 'BackCompat'){
+                        return {
+                            w:document.body.clientWidth,
+                            h:document.body.clientHeight
+                        }
+                    }else {
+                        return {
+                            w:document.documentElement.clientWidth,
+                            h:document.documentElement.clientHeight
+                        }
+                    }
+                }
+            }
+        </script>
+</body>
+</html>

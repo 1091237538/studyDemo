@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="txt" value="请输入内容">
+<div><span>123<p>456</p></span><!-- 12313 --></div>
+</body>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+    $(function () {
+       $('#txt').focus(function () {
+           if($(this).val()==='请输入内容'){
+               $(this).val('');
+           }
+       });
+        $('#txt').blur(function () {
+           if($(this).val()===''){
+               $(this).val('请输入内容')
+           }
+        });
+    });
+</script>
+</html>

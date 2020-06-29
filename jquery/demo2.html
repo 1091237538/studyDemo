@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap-box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 404px;
+            height: 500px;
+            border: 1px solid #ccc;
+
+        }
+        .top,
+        .bottom {
+            position: absolute;
+        }
+        .top {
+            width: 100%;
+            top: 0;
+            height: 35px;
+            border-bottom: 1px solid #ccc;
+        }
+        .top li {
+            float: left;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+        }
+        .bottom {
+            width: 100%;
+            height: 465px;
+            bottom: 0;
+        }
+        .bottom ul,
+        .bottom ul>li {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-box">
+        <div class="top">
+            <ul>
+                <li>html</li>
+                <li>css</li>
+                <li>javascript</li>
+                <li>jquery</li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <ul>
+                <li>html</li>
+                <li>css</li>
+                <li>javascript</li>
+                <li>jquery</li>
+            </ul>
+        </div>
+    </div>
+</body>
+    <script src="jquery-1.11.3/jquery.js"></script>
+    <script>
+        $(function () {
+            var lis = document.querySelector('.bottom').querySelectorAll('li');
+            for (var i=0;i<lis.length;i++){
+                lis[i].setAttribute('index',i);
+            }
+            $('.top li').on('click',function (e) {
+                $('.bottom li').css('display','block');
+            });
+        });
+    </script>
+</html>

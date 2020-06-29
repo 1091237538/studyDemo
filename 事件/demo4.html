@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background: #39E9E9;
+        }
+        .right {
+            position: fixed;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(0,0,0,.7);
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="right"></div>
+    <input type="button" value="打开">
+</body>
+<script src="../jquery/jquery-1.11.3/jquery.js"></script>
+    <script>
+        // var input = document.getElementsByTagName('input')[0];
+        // var div = document.getElementsByTagName('div')[0];
+        // var right = window.getComputedStyle(div,null).right;
+        // var opacity = window.getComputedStyle(div,null).backgroundColor;
+        // var key = true;
+        // input.onclick = function (){
+        //     if(key) {
+        //         div.style.right = '0px';
+        //         key = false;
+        //         setTimeout(function(){
+        //             div.style.backgroundColor = 'rgba(0,0,0,.9)';
+        //         },1000);
+        //     }
+        //     else {
+        //         div.style.right = right;
+        //         div.style.backgroundColor = 'rgba(0,0,0,.7)';
+        //         key = true;
+        //     }
+        // }
+        var key =true;
+        $('input').click(function () {
+            if(key) {
+                $('div').animate({right: 0}, function () {
+                    setTimeout(function () {
+                        $('div').css('backgroundColor', 'rgba(0,0,0,.9)');
+                    }, 1000);
+                });
+                key = false;
+            }
+            else {
+                $('div').animate({right: -300}, function () {
+                    $(this).css({backgroundColor:'rgba(0,0,0,.7)'});
+                });
+                key = true;
+            }
+        });
+    </script>
+</html>
